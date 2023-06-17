@@ -1,4 +1,4 @@
-package service;
+package com.techdevs.ep3.service;
 
 import com.techdevs.ep3.entity.Cliente;
 import com.techdevs.ep3.repository.ClienteRepository;

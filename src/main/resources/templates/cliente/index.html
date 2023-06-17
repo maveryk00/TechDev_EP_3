@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EP3 - cliente CRUD</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="/js/main.js"></script>
+
+    <style>
+        td {
+            padding: 5px;
+        }
+
+        input {
+            margin: 0 !important;
+        }
+
+        .input-field {
+            width: 100%;
+            margin: 0 !important;
+        }
+
+        .input-field>label:not(.label-icon).active {
+            transform: translateY(-5px) scale(.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Clientes</h2>
+
+        <table class="highlight" th:if="${!clientes.isEmpty()}">
+            <thead>
+            <tr>
+                <th class="center-align" width="5%">Id</th>
+                <th width="15%">Nombre</th>
+                <th width="15%">Apellido</th>
+                <th>Correo</th>
+                <th width="12%">Celular</th>
+                <th width="13%"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="cliente:${clientes}">
+                <td class="center-align" data-name="id" th:text="${cliente.id}"></td>
+                <td data-name="nombre" th:text="${cliente.nombre}"></td>
+                <td data-name="apellido" th:text="${cliente.apellido}"></td>
+                <td data-name="correo" th:text="${cliente.correo}"></td>
+                <td data-name="celular" th:text="${cliente.celular}"></td>
+                <td>
+                    <button class="btn btn-edit btn-flat waves-effect waves-light btn-small">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button class="btn btn-delete btn-flat waves-effect waves-light btn-small">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="center-align"></td>
+                <td><div class="input-field inline">
+                        <input id="new-client-name" type="text" name="nombre" form="create-client">
+                        <label for="new-client-name">nombre</label>
+                    </div></td>
+                <td><div class="input-field inline">
+                        <input id="new-client-lastname" type="text" name="apellido" form="create-client">
+                        <label for="new-client-lastname">apellido</label>
+                    </div></td>
+                <td><div class="input-field inline">
+                    <input id="new-client-email" type="text" name="correo" form="create-client">
+                    <label for="new-client-email">correo</label>
+                </div></td>
+                <td><div class="input-field inline">
+                    <input id="new-client-cellphone" type="text" name="celular" form="create-client">
+                    <label for="new-client-cellphone">celular</label>
+                </div></td>
+                <td>
+                    <button class="btn btn-create btn-flat waves-effect waves-light btn-small">
+                        <i class="material-icons">person_add</i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
