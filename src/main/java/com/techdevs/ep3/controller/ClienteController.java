@@ -45,11 +45,21 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     public String actualizar(@PathVariable("id") int id, @ModelAttribute("cliente") Cliente cliente) {
-        cliente.setId(id);
-        cliente.setFechaActualizacion(new Date());
+        String result = "redirect:/cliente";
+        try{
+            cliente.setId(id);
+            cliente.setFechaActualizacion(new Date());
 //        cliente.setFechaCreacion(new Date());
-        clienteService.save(cliente);
-        return "redirect:/cliente";
+            clienteService.save(cliente);
+
+        }
+        catch (DataIntegrityViolationException ex){
+//            String message = "Error de integridad de datos: el valor ya existe en la base de datos.";
+//            throw new ClienteCorreoDuplicadoException(message);
+            result = "redirect:/cliente?error=duplicate";
+        }
+
+        return result;
     }
 
     @DeleteMapping("/{id}")
